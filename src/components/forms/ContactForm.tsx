@@ -33,6 +33,8 @@ const services = [
   'Other',
 ];
 
+const fieldStyle = { backgroundColor: '#111111', color: '#ffffff' };
+
 export default function ContactForm() {
   const [submitting, setSubmitting] = useState(false);
 
@@ -72,7 +74,8 @@ export default function ContactForm() {
           <input
             {...register('name')}
             placeholder="Your name"
-            className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 transition-colors"
+            className="form-input w-full border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors"
+            style={fieldStyle}
           />
           {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name.message}</p>}
         </div>
@@ -82,7 +85,8 @@ export default function ContactForm() {
             {...register('email')}
             type="email"
             placeholder="you@company.com"
-            className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 transition-colors"
+            className="form-input w-full border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors"
+            style={fieldStyle}
           />
           {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
         </div>
@@ -94,7 +98,8 @@ export default function ContactForm() {
           <input
             {...register('phone')}
             placeholder="+91 98765 43210"
-            className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 transition-colors"
+            className="form-input w-full border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors"
+            style={fieldStyle}
           />
         </div>
         <div>
@@ -102,7 +107,8 @@ export default function ContactForm() {
           <input
             {...register('company')}
             placeholder="Your company"
-            className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 transition-colors"
+            className="form-input w-full border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors"
+            style={fieldStyle}
           />
         </div>
       </div>
@@ -110,15 +116,15 @@ export default function ContactForm() {
       <div>
         <label className="block text-xs text-white/50 mb-1.5">Service Interested In *</label>
         <select
-         {...register('service')}
-         className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors appearance-none"
-         style={{ colorScheme: 'dark', color: '#ffffff', backgroundColor: 'rgba(255,255,255,0.04)' }}
-          >
-         <option value="" style={{ backgroundColor: '#111111', color: '#ffffff' }}>Select a service</option>
-         {services.map((s) => (
-         <option key={s} value={s} style={{ backgroundColor: '#111111', color: '#ffffff' }}>{s}</option>
-         ))}
-         </select>
+          {...register('service')}
+          className="w-full border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors appearance-none"
+          style={{ colorScheme: 'dark', ...fieldStyle }}
+        >
+          <option value="" style={fieldStyle}>Select a service</option>
+          {services.map((s) => (
+            <option key={s} value={s} style={fieldStyle}>{s}</option>
+          ))}
+        </select>
         {errors.service && <p className="text-red-400 text-xs mt-1">{errors.service.message}</p>}
       </div>
 
@@ -128,7 +134,8 @@ export default function ContactForm() {
           {...register('message')}
           rows={5}
           placeholder="Tell us about your project, goals, timeline, and budget..."
-          className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 transition-colors resize-none"
+          className="form-input w-full border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors resize-none"
+          style={fieldStyle}
         />
         {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message.message}</p>}
       </div>
