@@ -110,15 +110,15 @@ export default function ContactForm() {
       <div>
         <label className="block text-xs text-white/50 mb-1.5">Service Interested In *</label>
         <select
-          {...register('service')}
-          className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white outline-none focus:border-white/20 transition-colors appearance-none"
-          style={{ colorScheme: 'dark' }}
-        >
-          <option value="" className="bg-[#111]">Select a service</option>
-          {services.map((s) => (
-            <option key={s} value={s} className="bg-[#111]">{s}</option>
-          ))}
-        </select>
+         {...register('service')}
+         className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm outline-none focus:border-white/20 transition-colors appearance-none"
+         style={{ colorScheme: 'dark', color: '#ffffff', backgroundColor: 'rgba(255,255,255,0.04)' }}
+          >
+         <option value="" style={{ backgroundColor: '#111111', color: '#ffffff' }}>Select a service</option>
+         {services.map((s) => (
+         <option key={s} value={s} style={{ backgroundColor: '#111111', color: '#ffffff' }}>{s}</option>
+         ))}
+         </select>
         {errors.service && <p className="text-red-400 text-xs mt-1">{errors.service.message}</p>}
       </div>
 
