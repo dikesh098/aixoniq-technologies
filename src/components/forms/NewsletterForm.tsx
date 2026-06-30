@@ -41,7 +41,8 @@ export default function NewsletterForm() {
           {...register('email')}
           type="email"
           placeholder="your@email.com"
-          className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder-white/25 outline-none focus:border-white/20 transition-colors"
+          className="form-input w-full border border-white/10 rounded-lg px-4 py-2.5 text-sm outline-none focus:border-white/20 transition-colors"
+          style={{ backgroundColor: '#111111', color: '#ffffff' }}
         />
         {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email.message}</p>}
       </div>
@@ -52,3 +53,4 @@ export default function NewsletterForm() {
     </form>
   );
 }
+
