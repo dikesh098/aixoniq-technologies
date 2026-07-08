@@ -161,7 +161,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Recent Work"
           number="05"
-          title="Selected projects across government, education, and digital services"
+          title="Selected projects across retail, healthcare, and digital services"
         />
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {PORTFOLIO.map((p, i) => (
