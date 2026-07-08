@@ -341,12 +341,26 @@ export const PORTFOLIO: PortfolioProject[] = [
     stack: ["Next.js 15", "TypeScript", "MongoDB", "Cloudinary"],
   },
   */
+   {
+  title: "Smart Learning Management System",
+  category: "Education",
+  summary:
+    "A modern web platform that enables students and instructors to manage courses, assignments, attendance, and progress tracking through an intuitive dashboard.",
+  stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+  },
   {
     title: "eSakha — Government & Digital Services",
     category: "Digital Agency",
     summary: "A full rebuild of a Nagpur-based service provider's platform, covering compliance filings and digital services end to end.",
     stack: ["Next.js 15", "Supabase", "Razorpay", "OpenAI"],
   },
+  {
+  title: "TaskFlow Project Manager",
+  category: "Productivity",
+  summary:
+    "A collaborative project management application featuring task tracking, team collaboration, real-time notifications, and analytics dashboards.",
+  stack: ["Next.js 15", "TypeScript", "Supabase", "Tailwind CSS"],
+},
   /*
   {
     title: "AIFS College Management Portal",
