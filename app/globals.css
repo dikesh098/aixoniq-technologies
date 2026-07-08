@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-void text-navy font-body antialiased;
+  }
+  ::selection {
+    @apply bg-cyan-bright/25 text-white;
+  }
+  :focus-visible {
+    outline: 2px solid #2fe3ff;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* ---------- Core primitives — dark, cinematic, used across the whole site ---------- */
+  .glass {
+    @apply bg-panel/60 backdrop-blur-xl border border-white/[0.06];
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-xs tracking-[0.28em] uppercase text-cyan-bright;
+  }
+
+  .eyebrow-num {
+    @apply flex h-6 w-9 items-center justify-center rounded-full border border-cyan-bright/30 bg-cyan-bright/10 font-mono text-[10px] text-cyan-bright;
+  }
+
+  .shell {
+    @apply mx-auto w-full max-w-7xl px-6 md:px-10;
+  }
+
+  .card {
+    @apply relative rounded-2xl border border-white/[0.07] bg-panel/70 p-7 shadow-[0_1px_0_rgba(255,255,255,0.04)_inset,0_20px_60px_-24px_rgba(0,0,0,0.7)]
+    backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-bright/30 hover:shadow-[0_24px_70px_-20px_rgba(36,81,255,0.35)];
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-royal px-7 py-3.5 text-sm font-semibold text-white
+    shadow-[0_8px_24px_-8px_rgba(36,81,255,0.55)] transition-all duration-300 hover:bg-royal-bright hover:shadow-[0_10px_32px_-8px_rgba(36,81,255,0.7)]
+    active:scale-[0.98];
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-7 py-3.5 text-sm font-semibold text-white
+    backdrop-blur-md transition-all duration-300 hover:border-cyan-bright/40 hover:bg-white/[0.06] active:scale-[0.98];
+  }
+
+  /* Kept as aliases so existing "-dark" class references in components still resolve correctly */
+  .glass-dark {
+    @apply glass;
+  }
+  .eyebrow-dark {
+    @apply eyebrow;
+  }
+  .card-dark {
+    @apply card;
+  }
+  .btn-secondary-dark {
+    @apply btn-secondary;
+  }
+
+  /* Signature bolt-beam divider at section seams */
+  .slash-divider {
+    @apply relative h-px w-full overflow-hidden bg-line;
+  }
+  .slash-divider::after {
+    content: "";
+    @apply absolute inset-y-0 left-0 w-1/3 bg-beam animate-slash;
+  }
+  .slash-divider-dark {
+    @apply slash-divider;
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image: theme("backgroundImage.grid-fade");
+    background-size: theme("backgroundSize.grid");
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-glow {
+    text-shadow: 0 0 40px rgba(47, 227, 255, 0.35);
+  }
+}
