@@ -341,12 +341,11 @@ export const PORTFOLIO: PortfolioProject[] = [
     stack: ["Next.js 15", "TypeScript", "MongoDB", "Cloudinary"],
   },
   */
-   {
-  title: "Smart Learning Management System",
-  category: "Education",
-  summary:
-    "A modern web platform that enables students and instructors to manage courses, assignments, attendance, and progress tracking through an intuitive dashboard.",
-  stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+  {
+    title: "Smart Learning Management System",
+    category: "Education",
+    summary: "A modern web platform that enables students and instructors to manage courses, assignments, attendance, and progress tracking through an intuitive dashboard.",
+    stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
   },
   {
     title: "eSakha — Government & Digital Services",
@@ -355,12 +354,29 @@ export const PORTFOLIO: PortfolioProject[] = [
     stack: ["Next.js 15", "Supabase", "Razorpay", "OpenAI"],
   },
   {
-  title: "TaskFlow Project Manager",
-  category: "Productivity",
-  summary:
-    "A collaborative project management application featuring task tracking, team collaboration, real-time notifications, and analytics dashboards.",
-  stack: ["Next.js 15", "TypeScript", "Supabase", "Tailwind CSS"],
-},
+    title: "TaskFlow Project Manager",
+    category: "Productivity",
+    summary: "A collaborative project management application featuring task tracking, team collaboration, real-time notifications, and analytics dashboards.",
+    stack: ["Next.js 15", "TypeScript", "Supabase", "Tailwind CSS"],
+  },
+  {
+    title: "Restaurant Ordering System",
+    category: "Food & Beverage",
+    summary:"A digital ordering solution with menu management, online payments, table reservations, order tracking, and customer feedback.",
+    stack: ["Next.js 15", "TypeScript", "Supabase", "Stripe"],
+  },
+    {
+   title: "Online Examination Portal",
+   category: "Education",
+   summary:"A secure examination platform supporting timed assessments, automated evaluation, student dashboards, and detailed performance analytics.",
+   stack: ["React", "Express", "MySQL", "JWT"],
+  },
+ {
+  title: "Real Estate Property Portal",
+  category: "Real Estate",
+  summary: "A property listing platform with advanced search filters, interactive maps, virtual tours, and inquiry management for buyers and agents.",
+  stack: ["React", "Node.js", "MongoDB", "Cloudinary"],
+  },
   /*
   {
     title: "AIFS College Management Portal",
