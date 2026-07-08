@@ -333,22 +333,26 @@ export type PortfolioProject = {
 };
 
 export const PORTFOLIO: PortfolioProject[] = [
+  /*
   {
     title: "Graduate Constituency Election Portal",
     category: "Government",
     summary: "A voter assistance and Form 18 guidance platform for the Nagpur Graduates' Constituency, with OTP verification and document upload.",
     stack: ["Next.js 15", "TypeScript", "MongoDB", "Cloudinary"],
   },
+  */
   {
     title: "eSakha — Government & Digital Services",
     category: "Digital Agency",
     summary: "A full rebuild of a Nagpur-based service provider's platform, covering compliance filings and digital services end to end.",
     stack: ["Next.js 15", "Supabase", "Razorpay", "OpenAI"],
   },
+  /*
   {
     title: "AIFS College Management Portal",
     category: "Education",
     summary: "A multi-role portal for the Asian Institute of Fire Safety, covering students, faculty, and administration across 15+ modules.",
     stack: ["React", "Node.js", "Express", "MySQL"],
   },
+  */
 ];
