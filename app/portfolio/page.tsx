@@ -7,7 +7,7 @@ import { PORTFOLIO, TECH_STACK } from "@/lib/data";
 export const metadata: Metadata = {
   title: "Portfolio | Aixoniq Technologies Case Studies",
   description:
-    "See recent projects from Aixoniq Technologies, a software development company delivering government, education, and digital service platforms.",
+    "See recent projects from Aixoniq Technologies, a software development company delivering retail, healthcare, and digital service platforms.",
   alternates: { canonical: "/portfolio" },
 };
 
@@ -19,8 +19,8 @@ export default function PortfolioPage() {
       <section className="shell pb-16 pt-10 md:pb-20">
         <SectionHeading
           eyebrow="Portfolio"
-          title="Case studies from government, education, and digital services"
-          description="A sample of recent custom software development and ERP development work."
+          title="Case studies from retail, healthcare, and digital services"
+          description="A sample of recent custom software development and platform work."
         />
       </section>
 
@@ -75,3 +75,4 @@ export default function PortfolioPage() {
     </>
   );
 }
+
