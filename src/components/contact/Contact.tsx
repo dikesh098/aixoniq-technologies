@@ -119,11 +119,6 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
   return (
     <div className="flex flex-col gap-2">
       <label className="font-mono text-[11px] uppercase tracking-wide text-text-dim">{label}</label>
-      <div className="[&>input]:bg-transparent [&>input]:border-0 [&>input]:border-b [&>input]:border-line [&>input]:py-2.5 [&>input]:focus:border-signal [&>input]:focus:outline-none [&>input]:text-[15px]
-                      [&>select]:bg-transparent [&>select]:border-0 [&>select]:border-b [&>select]:border-line [&>select]:py-2.5 [&>select]:focus:border-signal [&>select]:focus:outline-none [&>select]:text-[15px]
-                      [&>textarea]:bg-transparent [&>textarea]:border-0 [&>textarea]:border-b [&>textarea]:border-line [&>textarea]:py-2.5 [&>textarea]:focus:border-signal [&>textarea]:focus:outline-none [&>textarea]:text-[15px]">
-        {children}
-      </div>
     </div>
   );
 }
