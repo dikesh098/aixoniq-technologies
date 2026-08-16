@@ -12,9 +12,6 @@ export function Work() {
         <div data-reveal className="flex flex-col gap-5 max-w-[900px]">
           <span className="eyebrow">04 — Featured Work</span>
           <h2 className="text-[32px] md:text-[5.4vw] lg:text-[72px] uppercase">Selected case <br />studies.</h2>
-          <div className="config-note">
-            Placeholder projects — replace with real Aixoniq case studies from Supabase's <code>projects</code> table before launch.
-          </div>
         </div>
 
         <div data-reveal className="flex flex-col mt-14">
