@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply box-border; }
+  html { @apply bg-void scroll-smooth; }
+  body {
+    @apply bg-void text-text font-body antialiased overflow-x-hidden;
+  }
+  ::selection { @apply bg-signal text-void; }
+  h1, h2, h3 { @apply font-display font-medium tracking-tight leading-none; }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.18em] uppercase text-signal flex items-center gap-2.5;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply w-5 h-px bg-signal inline-block;
+  }
+  .btn {
+    @apply font-mono text-xs tracking-[0.08em] uppercase px-5 py-3 border border-line rounded-full inline-flex items-center gap-2 transition-colors duration-300;
+  }
+  .btn-primary { @apply bg-signal text-void border-signal; }
+  .btn-ghost:hover { @apply border-signal text-signal; }
+  .config-note {
+    @apply font-mono text-[11px] text-amber-400 border border-dashed border-amber-400/40 px-3.5 py-2.5 rounded-md mt-4 max-w-[60ch];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
