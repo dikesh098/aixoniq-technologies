@@ -45,7 +45,6 @@ export function Stats() {
         <div data-reveal className="flex flex-col gap-5 max-w-[900px]">
           <span className="eyebrow">09 — By The Numbers</span>
           <h2 className="text-[32px] md:text-[5.4vw] lg:text-[72px] uppercase">Digital possibilities, <br />always on.</h2>
-          <div className="config-note">Placeholder metrics — swap for verified figures before launch.</div>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line mt-14">
           {stats.map((s) => (
