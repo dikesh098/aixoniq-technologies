@@ -22,7 +22,7 @@ export function Footer() {
           <div>
             <h4 className="font-mono text-[11px] text-text-dim uppercase tracking-wide mb-3.5">Connect</h4>
             <a href="#contact" className="block text-sm text-text-dim hover:text-signal py-1 transition-colors">Contact</a>
-            <a href="mailto:hello@aixoniq.tech" className="block text-sm text-text-dim hover:text-signal py-1 transition-colors">hello@aixoniq.tech</a>
+            <a href="mailto:hello@aixoniq.tech" className="block text-sm text-text-dim hover:text-signal py-1 transition-colors">aixoniqtechnologies@gmail.com</a>
           </div>
         </div>
       </div>
