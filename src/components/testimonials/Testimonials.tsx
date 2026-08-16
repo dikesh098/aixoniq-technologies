@@ -19,7 +19,6 @@ export function Testimonials() {
         <div data-reveal className="flex flex-col gap-5 max-w-[900px]">
           <span className="eyebrow">10 — Trust</span>
           <h2 className="text-[32px] md:text-[5.4vw] lg:text-[72px] uppercase">What clients say.</h2>
-          <div className="config-note">Placeholder quotes — connect to Supabase <code>testimonials</code> table for live content.</div>
         </div>
 
         <div data-reveal className="mt-14 min-h-[260px]">
