@@ -103,11 +103,6 @@ export function Contact() {
           </div>
 
           {!isSupabaseConfigured && (
-            <div className="config-note">
-              Demo mode — this form isn't wired to a live database yet. Add <code>VITE_SUPABASE_URL</code> and{' '}
-              <code>VITE_SUPABASE_ANON_KEY</code> to your <code>.env</code> (see <code>.env.example</code>) to start
-              collecting real leads in the <code>contact_messages</code> table.
-            </div>
           )}
         </form>
       </div>
