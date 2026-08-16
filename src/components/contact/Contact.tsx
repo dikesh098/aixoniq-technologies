@@ -1,124 +1,176 @@
-import { useState } from 'react';
-import { supabase, isSupabaseConfigured } from '@/lib/supabase';
-import type { ContactFormData } from '@/types';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
+import { useState } from 'react'
+import { supabase } from '@/lib/supabase'
 
-const initialForm: ContactFormData = {
-  name: '', email: '', company: '', project_type: 'AI / Automation', budget: 'Under $10k', message: '',
-};
+export default function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    message: '',
+  })
 
-export function Contact() {
-  const ref = useScrollReveal<HTMLElement>();
-  const [form, setForm] = useState<ContactFormData>(initialForm);
-  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle');
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState('')
 
-  function update<K extends keyof ContactFormData>(key: K, value: ContactFormData[K]) {
-    setForm((f) => ({ ...f, [key]: value }));
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    })
   }
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setStatus('sending');
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
 
-    if (!isSupabaseConfigured || !supabase) {
-      // Demo mode — no Supabase credentials configured yet.
-      console.info('[Aixoniq contact form — demo mode]', form);
-      await new Promise((r) => setTimeout(r, 700));
-      setStatus('sent');
-      setForm(initialForm);
-      setTimeout(() => setStatus('idle'), 3200);
-      return;
-    }
+    setLoading(true)
+    setSuccess(false)
+    setError('')
 
-    const { error } = await supabase.from('contact_messages').insert([form]);
-    if (error) {
-      console.error(error);
-      setStatus('error');
-      return;
+    try {
+      const { error: supabaseError } = await supabase
+        .from('contact_messages')
+        .insert([
+          {
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            phone: formData.phone.trim() || null,
+            company: formData.company.trim() || null,
+            message: formData.message.trim(),
+          },
+        ])
+
+      if (supabaseError) {
+        throw supabaseError
+      }
+
+      setSuccess(true)
+
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        message: '',
+      })
+    } catch (err) {
+      console.error('Contact form error:', err)
+
+      setError(
+        'Unable to send your message right now. Please try again later.'
+      )
+    } finally {
+      setLoading(false)
     }
-    setStatus('sent');
-    setForm(initialForm);
-    setTimeout(() => setStatus('idle'), 3200);
   }
 
   return (
-    <section id="contact" ref={ref} className="section relative border-t border-line px-6 md:px-20 py-20 md:py-40 bg-panel border-b border-line overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="absolute top-1/2 -right-[8%] -translate-y-1/2 w-[80vw] md:w-[52vw] max-w-[620px] aspect-square rounded-full pointer-events-none blur-[2px] bg-[radial-gradient(circle,rgba(73,240,255,0.14),transparent_62%)]"
-      >
-        <div className="absolute inset-[8%] rounded-full border border-signal/30 animate-[spin_18s_linear_infinite]" />
-        <div className="absolute inset-[18%] rounded-full border border-white/10 animate-[spin_26s_linear_infinite_reverse]" />
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label htmlFor="name" className="block mb-2">
+          Name
+        </label>
+
+        <input
+          id="name"
+          name="name"
+          type="text"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full rounded-lg border px-4 py-3"
+          placeholder="Your name"
+        />
       </div>
 
-      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 relative z-[2]">
-        <div data-reveal>
-          <span className="eyebrow">11 — Get In Touch</span>
-          <h2 className="text-[40px] md:text-[6vw] lg:text-[84px] uppercase mt-5">Have an idea?</h2>
-          <h2 className="text-[40px] md:text-[6vw] lg:text-[84px] uppercase text-signal">Let's build it.</h2>
-          <p className="text-text-dim mt-5 max-w-[44ch]">
-            Tell us where you're headed. We'll tell you how to get there — with AI, software, and design that actually ships.
-          </p>
+      <div>
+        <label htmlFor="email" className="block mb-2">
+          Email
+        </label>
+
+        <input
+          id="email"
+          name="email"
+          type="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="w-full rounded-lg border px-4 py-3"
+          placeholder="you@example.com"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="phone" className="block mb-2">
+          Phone
+        </label>
+
+        <input
+          id="phone"
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleChange}
+          className="w-full rounded-lg border px-4 py-3"
+          placeholder="+91 98765 43210"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="company" className="block mb-2">
+          Company
+        </label>
+
+        <input
+          id="company"
+          name="company"
+          type="text"
+          value={formData.company}
+          onChange={handleChange}
+          className="w-full rounded-lg border px-4 py-3"
+          placeholder="Company name"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="message" className="block mb-2">
+          Message
+        </label>
+
+        <textarea
+          id="message"
+          name="message"
+          rows={6}
+          value={formData.message}
+          onChange={handleChange}
+          required
+          className="w-full rounded-lg border px-4 py-3"
+          placeholder="Tell us about your project..."
+        />
+      </div>
+
+      {success && (
+        <div className="rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-green-600">
+          Thank you! Your message has been sent successfully.
         </div>
+      )}
 
-        <form data-reveal onSubmit={handleSubmit} className="flex flex-col gap-5">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Name">
-              <input required value={form.name} onChange={(e) => update('name', e.target.value)} />
-            </Field>
-            <Field label="Email">
-              <input required type="email" value={form.email} onChange={(e) => update('email', e.target.value)} />
-            </Field>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <Field label="Company">
-              <input value={form.company} onChange={(e) => update('company', e.target.value)} />
-            </Field>
-            <Field label="Project Type">
-              <select value={form.project_type} onChange={(e) => update('project_type', e.target.value)}>
-                {['AI / Automation', 'Web Development', 'Mobile App', 'UI/UX Design', 'Cloud Solutions', 'Custom Software'].map((o) => (
-                  <option key={o}>{o}</option>
-                ))}
-              </select>
-            </Field>
-          </div>
-          <Field label="Budget">
-            <select value={form.budget} onChange={(e) => update('budget', e.target.value)}>
-              {['Under $10k', '$10k – $25k', '$25k – $75k', '$75k+'].map((o) => <option key={o}>{o}</option>)}
-            </select>
-          </Field>
-          <Field label="Message">
-            <textarea required rows={3} value={form.message} onChange={(e) => update('message', e.target.value)} />
-          </Field>
+      {error && (
+        <div className="rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-red-600">
+          {error}
+        </div>
+      )}
 
-          <button type="submit" disabled={status === 'sending'} className="btn btn-primary magnetic self-start mt-2">
-            <span>
-              {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Message Received.' : "Start a Conversation →"}
-            </span>
-          </button>
-
-          <div className="font-mono text-xs text-signal min-h-[16px]">
-            {status === 'sent' && (isSupabaseConfigured ? '✓ Message saved to Supabase.' : '✓ Demo mode — connect Supabase to save real leads.')}
-            {status === 'error' && 'Something went wrong — please try again.'}
-          </div>
-
-          {!isSupabaseConfigured && (
-          )}
-        </form>
-      </div>
-    </section>
-  );
-}
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col gap-2">
-      <label className="font-mono text-[11px] uppercase tracking-wide text-text-dim">{label}</label>
-      <div className="[&>input]:bg-transparent [&>input]:border-0 [&>input]:border-b [&>input]:border-line [&>input]:py-2.5 [&>input]:focus:border-signal [&>input]:focus:outline-none [&>input]:text-[15px]
-                      [&>select]:bg-transparent [&>select]:border-0 [&>select]:border-b [&>select]:border-line [&>select]:py-2.5 [&>select]:focus:border-signal [&>select]:focus:outline-none [&>select]:text-[15px]
-                      [&>textarea]:bg-transparent [&>textarea]:border-0 [&>textarea]:border-b [&>textarea]:border-line [&>textarea]:py-2.5 [&>textarea]:focus:border-signal [&>textarea]:focus:outline-none [&>textarea]:text-[15px]">
-      {children}
-      </div>
-    </div>
-  );
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full rounded-lg px-6 py-3 font-medium disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {loading ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
+  )
 }
